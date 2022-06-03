@@ -1,2 +1,2 @@
 build:
-	go build -o bin/gcom .
+	go build -o bin/gcom ./cmd/gcom
