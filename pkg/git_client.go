@@ -1,22 +1,39 @@
 package checkr
 
 import (
+	"fmt"
 	"log"
 	"os/exec"
 )
 
 const gitBinary = "/usr/bin/git"
 
-func ChangeToBranch(branch, repoPath string) error {
-	argList := []string{"-C", repoPath, "checkout", branch}
+func PullBranch(branch, repoPath string) error {
+
+	argList := []string{"-C", repoPath, "pull", "origin", branch}
 	lsCmd := exec.Command(gitBinary, argList...)
 
-	_, err := lsCmd.Output()
+	cmdOutput, err := lsCmd.Output()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	fmt.Println(string(cmdOutput))
+
+	return nil
+}
+
+func ChangeToBranch(branch, repoPath string) error {
+	argList := []string{"-C", repoPath, "checkout", branch}
+	lsCmd := exec.Command(gitBinary, argList...)
+
+	cmdOutput, err := lsCmd.Output()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(cmdOutput))
 	return nil
 }
 

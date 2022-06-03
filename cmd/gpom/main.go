@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	daRepo, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
@@ -19,8 +20,8 @@ func main() {
 	}
 
 	if hasMaster {
-		fmt.Println("I'm bout to check out MASTER")
-		err := checkr.ChangeToBranch("master", daRepo)
+		fmt.Println("I'm bout to pull from MASTER")
+		err := checkr.PullBranch("master", daRepo)
 		if err != nil {
 			fmt.Println("ERROR:", err)
 			os.Exit(-1)
@@ -31,8 +32,8 @@ func main() {
 	hasMain, err := checkr.RepoHasBranch("main", daRepo)
 
 	if hasMain {
-		fmt.Println("I'm bout to check out MAIN")
-		err := checkr.ChangeToBranch("main", daRepo)
+		fmt.Println("I'm bout to pull from MAIN")
+		err := checkr.PullBranch("main", daRepo)
 		if err != nil {
 			fmt.Println("ERROR:", err)
 			os.Exit(-1)
