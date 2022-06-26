@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
+	"strings"
 )
 
 const gitBinary = "/usr/bin/git"
@@ -49,4 +50,20 @@ func RepoHasBranch(branch, repoPath string) (bool, error) {
 	}
 
 	return len(lsOut) > 0, nil
+}
+
+func GetCurrentBranch() (string, error) {
+	// pre Git 2.2.2: rev-parse --abbrev-ref HEAD
+	argList := []string{"branch", "--show-current"}
+	gbCmd := exec.Command(gitBinary, argList...)
+
+	lsOut, err := gbCmd.Output()
+	currentBranch := strings.Trim(string(lsOut), "\n")
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	return currentBranch, nil
+
 }

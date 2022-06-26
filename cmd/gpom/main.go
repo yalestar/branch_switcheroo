@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	checkr "github.com/yalestar/branch_switcheroo/pkg"
 	"log"
 	"os"
+
+	checkr "github.com/yalestar/branch_switcheroo/pkg"
 )
 
 func main() {
