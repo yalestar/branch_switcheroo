@@ -8,7 +8,16 @@ import (
 	"os"
 )
 
+var version = ""
+
 func main() {
+
+	versionArg := os.Args[1:]
+
+	if len(versionArg) == 1 && versionArg[0] == "version" {
+		fmt.Println(version)
+		os.Exit(0)
+	}
 
 	currentBranch, err := checkr.GetCurrentBranch()
 	if err != nil {

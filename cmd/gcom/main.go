@@ -7,7 +7,17 @@ import (
 	"os"
 )
 
+var version = ""
+
 func main() {
+
+	versionArg := os.Args[1:]
+
+	if len(versionArg) == 1 && versionArg[0] == "version" {
+		fmt.Println(version)
+		os.Exit(0)
+	}
+
 	daRepo, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
